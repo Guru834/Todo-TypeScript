@@ -17,6 +17,7 @@ const App = () => {
   const handleCreate = () => {
     const todo = { name: todoName };
     setTodoList([...todoList, todo]);
+    setTodoName("");
   };
   const handleDelete = (selected: string): void => {
     setTodoList(
@@ -45,6 +46,7 @@ const App = () => {
             backgroundColor: "white",
             borderRadius: "10px",
           }}
+          value={todoName}
         />
         <Box>
           <Button

@@ -39,7 +39,13 @@ const Todo: React.FC<ITodo> = ({ todoList, handleDelete }) => {
             {todoList.name}
           </Grid>
           <Grid item xs={6}>
-            <CancelIcon onClick={handleClick} />
+            <CancelIcon
+              onClick={handleClick}
+              sx={{
+                cursor: "pointer",
+                "&:hover": { color: "red", transition: "color 0.5s" },
+              }}
+            />
           </Grid>
         </Grid>
       </Box>
