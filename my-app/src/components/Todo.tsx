@@ -6,12 +6,11 @@ import CancelIcon from "@mui/icons-material/Cancel";
 
 interface ITodo {
   todoList: IProps;
-  handleDelete(selected: string): void;
+  handleDelete(selected: string | number): void;
 }
 const Todo: React.FC<ITodo> = ({ todoList, handleDelete }) => {
   const handleClick = () => {
-    handleDelete(todoList.name);
-    console.log(todoList.name);
+    handleDelete(todoList.id);
   };
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>

@@ -2,9 +2,10 @@ import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import Todo from "./components/Todo";
-
+import { v4 } from "uuid";
 export interface IProps {
   name: string;
+  id: number | string;
 }
 const App = () => {
   const [todoName, setTodoName] = useState<string>("");
@@ -15,14 +16,14 @@ const App = () => {
     setTodoName(e.target.value);
   };
   const handleCreate = () => {
-    const todo = { name: todoName };
+    const todo = { name: todoName, id: v4() };
     setTodoList([...todoList, todo]);
     setTodoName("");
   };
-  const handleDelete = (selected: string): void => {
+  const handleDelete = (selected: number): void => {
     setTodoList(
       todoList.filter((item) => {
-        return item.name !== selected;
+        return item.id !== selected;
       })
     );
   };
@@ -60,8 +61,10 @@ const App = () => {
         </Box>
       </Box>
       <Box sx={{ marginTop: "4%" }}>
-        {todoList.map((item: IProps, key: number) => {
-          return <Todo todoList={item} key={key} handleDelete={handleDelete} />;
+        {todoList.map((item: IProps) => {
+          return (
+            <Todo todoList={item} key={v4()} handleDelete={handleDelete} />
+          );
         })}
       </Box>
     </Box>
